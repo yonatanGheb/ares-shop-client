@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types'; // ES6
 import { Link } from 'react-router-dom';
 import { Button, Grid, CardActionArea, CardActions, ButtonBase } from '@mui/material';
@@ -9,6 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import useCart from '../context/Context';
 
 const useStyles = makeStyles({
   cardContainer: {
@@ -27,35 +28,58 @@ const useStyles = makeStyles({
   }
 });
 const ProductCard = ({ product }) => {
+  const [isInCart, setIsInCart] = useState(false);
+  const { products, addProductToCart, removeProductFromCart } = useCart();
   const classes = useStyles();
-  return (
-    /*  <Grid
-      sx={{ backgroundImage: `url(${product.image})` }}
-      className={classes.cardContainer}
-      item
-      xs={6}
-      sm={3}>
-      <Link to={`/${product.id}`}>
-        <h3>Title: {product.title}</h3>
-      </Link>
-      <Button variant="contained">TEst</Button>
-      <p>Desc: {product.description}</p>
-      <p>Price: {product.price}</p>
-      <p>Price: {product.price}</p>
-      <img
-        src={product.image}
-        style={{
-          height: '420px',
-          width: '200px',
 
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center center',
-          objectFit: 'contain'
+  useEffect(() => {
+    const productIsInCart = products.find((currentProduct) => currentProduct.id === product.id);
+    if (productIsInCart) {
+      setIsInCart(true);
+    } else {
+      setIsInCart(false);
+    }
+  }, [products]);
+
+  const handleClick = () => {
+    if (isInCart) {
+      removeProductFromCart(product);
+    } else {
+      addProductToCart(product);
+    }
+  };
+
+  const renderActionButton = () => {
+    return !isInCart ? (
+      <ButtonBase
+        onClick={handleClick}
+        sx={{
+          backgroundColor: 'green',
+          borderRadius: '0px',
+          color: '#fff',
+          height: '30px',
+          width: '30px'
         }}
-      />
-    </Grid> */
+        color="primary">
+        <AddIcon color="#fff" />
+      </ButtonBase>
+    ) : (
+      <ButtonBase
+        onClick={handleClick}
+        sx={{
+          backgroundColor: 'red',
+          borderRadius: '0px',
+          color: '#fff',
+          height: '30px',
+          width: '30px'
+        }}
+        color="primary">
+        <RemoveIcon color="#fff" />
+      </ButtonBase>
+    );
+  };
 
+  return (
     <Grid
       sx={{ maxHeight: 345, minHeight: 345, width: '100%', borderRadius: 20 }}
       item
@@ -96,30 +120,7 @@ const ProductCard = ({ product }) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <ButtonBase
-            sx={{
-              backgroundColor: 'green',
-              borderRadius: '0px',
-              color: '#fff',
-              height: '30px',
-              width: '30px'
-            }}
-            color="primary">
-            <AddIcon color="#fff" />
-          </ButtonBase>
-          <ButtonBase
-            sx={{
-              backgroundColor: 'red',
-              borderRadius: '0px',
-              color: '#fff',
-              height: '30px',
-              width: '30px'
-            }}
-            color="primary">
-            <RemoveIcon color="#fff" />
-          </ButtonBase>
-        </CardActions>
+        <CardActions>{renderActionButton()}</CardActions>
       </Card>
     </Grid>
   );

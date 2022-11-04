@@ -7,7 +7,9 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge } from '@mui/material';
 import { Link } from 'react-router-dom';
+import useCart from '../context/Context';
 const Navigation = () => {
+  const { products } = useCart();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky">
@@ -17,11 +19,13 @@ const Navigation = () => {
               ares-webshop
             </Link>
           </Typography>
-          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <Badge badgeContent={2} color="error">
-              <ShoppingCartIcon />
-            </Badge>
-          </IconButton>
+          <Link to={'/cart'}>
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={products.length} color="error">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
