@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { getAllProducts } from '../api';
 import ProductCard from '../components/ProductCard';
@@ -21,7 +22,13 @@ const Home = () => {
     );
   };
 
-  return <>{renderAllProducts()}</>;
+  return (
+    <>
+      <Grid container spacing={3}>
+        {renderAllProducts()}
+      </Grid>
+    </>
+  );
 };
 
 export default Home;
