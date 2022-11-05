@@ -1,8 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Box, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { getAllProducts } from '../api';
 import ProductCard from '../components/ProductCard';
+import { CartContext } from '../context/Context';
+
+const Home = () => {
+  const classes = useStyles();
+  const { productsList } = useContext(CartContext);
+
+  const renderProductCards = () => {
+    return (
+      productsList && productsList.map((product, i) => <ProductCard key={i} product={product} />)
+    );
+  };
+
+  return (
+    <Box className={classes.container}>
+      <Grid container spacing={3}>
+        {renderProductCards()}
+      </Grid>
+    </Box>
+  );
+};
+
+export default Home;
 
 const useStyles = makeStyles({
   container: {
@@ -12,33 +33,3 @@ const useStyles = makeStyles({
     marginRight: 'auto'
   }
 });
-const Home = () => {
-  const [allProducts, setAllProducts] = useState([]);
-  const classes = useStyles();
-
-  const getProducts = async () => {
-    const allProducts = await getAllProducts();
-    if (allProducts.error) setAllProducts(allProducts.error);
-    else setAllProducts(allProducts.data);
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  const renderAllProducts = () => {
-    return (
-      allProducts && allProducts.map((product, i) => <ProductCard key={i} product={product} />)
-    );
-  };
-
-  return (
-    <Box className={classes.container}>
-      <Grid container spacing={3}>
-        {renderAllProducts()}
-      </Grid>
-    </Box>
-  );
-};
-
-export default Home;

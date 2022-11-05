@@ -21,7 +21,7 @@ const Navigation = () => {
   const classes = useStyles();
   return (
     <Box sx={{ flexGrow: 1, marginBottom: '50px' }}>
-      <AppBar position="sticky">
+      <AppBar sx={{ backgroundColor: '#1F3362' }} position="sticky">
         <Toolbar>
           <Typography color="secondary" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link className={classes.linkStyles} to={'/'}>
@@ -30,7 +30,7 @@ const Navigation = () => {
           </Typography>
           <Link className={classes.linkStyles} to={'/cart'}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={products.length} color="error">
+              <Badge badgeContent={products?.length} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>

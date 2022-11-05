@@ -1,14 +1,23 @@
-import React, { createContext, useContext, useReducer } from 'react';
-import { cartReducer, initialState } from './reducer';
+import React, { createContext, useContext, useReducer, useState, useEffect } from 'react';
+import { getAllProducts } from '../api';
+import { cartReducer, initializer, initialState } from './reducer';
 
-export const CartContext = createContext(initialState);
+export const CartContext = createContext();
+console.log(initializer(), 'initializerinitializer');
 
 export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, initialState);
+  const [state, dispatch] = useReducer(cartReducer, initialState, initializer);
+  const [allProducts, setAllProducts] = useState([]);
 
+  // Set cart state to local storage for persistence
+  useEffect(() => {
+    console.log('state', state);
+    localStorage.setItem('localCart', JSON.stringify(state));
+  }, [state]);
+
+  // Reducer function ->  Add one product to cart
   const addProductToCart = (product) => {
     const updatedCart = state.products.concat(product);
-    console.log('Add to cart', updatedCart);
     updateTotalPrice(updatedCart);
     dispatch({
       type: 'ADD_ONE_ITEM_TO_CART',
@@ -18,6 +27,7 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // Reducer function ->  Remove one product from cart
   const removeProductFromCart = (product) => {
     const updatedCart = state.products.filter((currentProduct) => {
       return currentProduct.id !== product.id;
@@ -30,6 +40,9 @@ export const CartProvider = ({ children }) => {
       }
     });
   };
+
+  // Reducer function ->  Calculate total price of products.
+  // Called every time a product gets added or removed from the cart.
   const updateTotalPrice = (products) => {
     const total = products.reduce((totalPrice, product) => (totalPrice += product.price), 0);
     dispatch({
@@ -40,12 +53,25 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // Get all products
+  const getProducts = async () => {
+    const allProducts = await getAllProducts();
+    if (allProducts.error) setAllProducts(allProducts.error);
+    else setAllProducts(allProducts.data);
+  };
+
+  // Get all products on first load of app
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
     <>
       <CartContext.Provider
         value={{
           total: state.total,
           products: state.products,
+          productsList: allProducts,
           addProductToCart,
           removeProductFromCart
         }}>

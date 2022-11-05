@@ -3,8 +3,16 @@ export const initialState = {
   products: []
 };
 
+// Initialize Cart reducer state -> Try to get state from localstorage
+export const initializer = (initialValue = initialState) => {
+  const localStorageState = JSON.parse(localStorage.getItem('localCart'));
+  return localStorageState ? localStorageState : initialState;
+};
+
+// Cart reducer actions
 export const cartReducer = (state, action) => {
   const { type, payload } = action;
+  console.log('state in cart reduceeeer', state);
 
   switch (type) {
     case 'ADD_ONE_ITEM_TO_CART':
