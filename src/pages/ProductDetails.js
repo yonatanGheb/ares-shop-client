@@ -4,7 +4,7 @@ import { getOneProduct } from '../api';
 import ProductCard from '../components/ProductCard';
 
 const ProductDetails = () => {
-  const [singleProduct, setSingleProduct] = useState([]);
+  const [singleProduct, setSingleProduct] = useState({});
   let { id } = useParams();
 
   const getProducts = async () => {
@@ -18,7 +18,7 @@ const ProductDetails = () => {
     getProducts();
   }, [id]);
 
-  return <ProductCard product={singleProduct} />;
+  return singleProduct && <ProductCard product={singleProduct} />;
 };
 
 export default ProductDetails;

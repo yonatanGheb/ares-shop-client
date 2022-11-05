@@ -3,15 +3,83 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
+    mode: 'dark',
+    /* primary: {
+      main: '#nnn',
+      dark: '#1878F2',
+      light: '#fff',
+      contrastText: '#fff',
+    }, */
     primary: {
-      main: '#2B2D42'
+      main: '#101213',
+      dark: '#0B0C0D',
+
+      light: '#ff',
+      contrastText: '#ff'
     },
     secondary: {
-      main: '#19857b'
+      main: '#47FEFF',
+      /*       main: '#00EFBC', */
+      /*     main: '#28C9A6', */
+      light: '#ff',
+      contrastText: '#066658'
+    },
+    third: {
+      main: '#00EFBC',
+      light: '#ff',
+      contrastText: '#066658'
+    },
+    white: {
+      main: '#fff',
+      dark: '#1878F2',
+      light: '#fff',
+      contrastText: '#1878F2'
+    },
+    black: {
+      main: '#101213'
+    },
+    orange: {
+      main: '#FFA500'
     },
     error: {
       main: red.A400
+    },
+    success: {
+      main: '#3BFF93',
+      light: '#3BFF93'
+    },
+    background: {
+      default: '#18191A',
+      /*    default: '#1E242F', */
+      /*  default: '#18191A', */
+      /* paper: '#282E32', */
+      paper: '#22223B'
     }
+
+    /*  secondary: {
+      main: '#00efbc',
+    },
+    primary: {
+      main: '#101213',
+      dark: '#0B0C0D',
+
+      light: '#fff',
+      contrastText: '#fff',
+    },
+    background: {
+      default: '#1e242f',
+      paper: '#282e32',
+    },
+    white: {
+      main: '#fff',
+      dark: '#1878F2',
+      light: '#fff',
+      contrastText: '#1878F2',
+    },
+
+    error: {
+      main: red.A400,
+    }, */
   }
 });
 

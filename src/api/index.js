@@ -9,3 +9,9 @@ export const getOneProduct = async (id) => {
     axios.get(`https://fakestoreapi.com/products/${id}`).then((res) => res.data)
   );
 };
+
+export const postOrder = async (order) => {
+  return await resolve(
+    axios.post(`https://enigmatic-springs-75128.herokuapp.com/order`, order).then((res) => res.data)
+  );
+};

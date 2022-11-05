@@ -1,14 +1,28 @@
+import { Button, Grid } from '@mui/material';
 import React from 'react';
+import { postOrder } from '../api';
+import ProductCard from '../components/ProductCard';
 import useCart from '../context/Context';
 
 const Cart = () => {
   const { products, addProductToCart, removeProductFromCart } = useCart();
+  const postOrderToDatabase = async () => {
+    const data = {
+      createdAt: new Date().toLocaleString(),
+      order: products
+    };
+    await postOrder(data);
+  };
+
   return (
-    <div>
-      {products.map((product) => {
-        return <h1>{product.title}</h1>;
+    <Grid container>
+      {products.map((product, i) => {
+        return <ProductCard key={i} product={product} />;
       })}
-    </div>
+      <Button onClick={postOrderToDatabase} variant="contained">
+        Finalize order
+      </Button>
+    </Grid>
   );
 };
 

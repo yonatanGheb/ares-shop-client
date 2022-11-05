@@ -20,7 +20,7 @@ export const CartProvider = ({ children }) => {
 
   const removeProductFromCart = (product) => {
     const updatedCart = state.products.filter((currentProduct) => {
-      return currentProduct.title !== product.title;
+      return currentProduct.id !== product.id;
     });
     updateTotalPrice(updatedCart);
     dispatch({
