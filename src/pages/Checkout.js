@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Avatar,
   Button,
@@ -18,26 +18,34 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { makeStyles } from '@mui/styles';
 import { postOrder } from '../api';
 import useCart from '../context/Context';
+import SuccessModal from '../components/SuccessModal';
 
 const Checkout = () => {
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const [urlToOrder, setUrlToOrder] = useState(false);
   const { products, removeProductFromCart, total, clearCart } = useCart();
   const classes = useStyles();
+
+  const toggleModal = (bool) => {
+    setOpenSuccessModal(bool);
+  };
+
   const postOrderToDatabase = async () => {
-    // Post order to server
-    // Clear cart
     const data = {
       createdAt: new Date().toLocaleString(),
       order: products
     };
     const order = await postOrder(data);
-
-    console.log('order', order);
-    clearCart();
+    if (!order.error) {
+      setUrlToOrder(order.data);
+      toggleModal(true);
+      clearCart();
+    } else {
+      console.log('An error occurred while creating an order', order.error);
+    }
   };
 
   const deleteProduct = (product) => {
-    console.log('Product in click', product);
-
     removeProductFromCart(product);
   };
   return (
@@ -69,7 +77,7 @@ const Checkout = () => {
                 })
               ) : (
                 <Typography textAlign="left" fontWeight={400} variant="h6">
-                  Shop items to fill your shopping cart
+                  Find items to fill your empty shopping cart....😢
                 </Typography>
               )}
             </List>
@@ -82,8 +90,7 @@ const Checkout = () => {
               display: 'flex',
               justifyContent: 'center',
               flexDirection: 'column'
-            }}
-          >
+            }}>
             <Typography textAlign="left" fontWeight={400} variant="h5">
               Overview
             </Typography>
@@ -102,6 +109,7 @@ const Checkout = () => {
             </Button>
           </Paper>
         </Grid>
+        <SuccessModal data={urlToOrder} open={openSuccessModal} toggleModal={toggleModal} />
       </Grid>
     </Box>
   );

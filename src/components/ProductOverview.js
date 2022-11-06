@@ -90,13 +90,11 @@ const ProductOverview = ({ product }) => {
       }}
       item
       xs={12}
-      sm={12}
-    >
+      sm={12}>
       <Card sx={{}} className={classes.cardContainer1}>
         <CardActionArea
           sx={{ margin: 0, pointerEvents: 'none' }}
-          classes={{ focusHighlight: classes.focus }}
-        >
+          classes={{ focusHighlight: classes.focus }}>
           <CardMedia
             component="img"
             height="240"
@@ -122,8 +120,7 @@ const ProductOverview = ({ product }) => {
               }}
               gutterBottom
               variant="h6"
-              component="div"
-            >
+              component="div">
               {product.title}
             </Typography>
             <Typography gutterBottom variant="body1" component="div">
@@ -134,8 +131,7 @@ const ProductOverview = ({ product }) => {
                 margin: 0
               }}
               variant="body1"
-              color="text.secondary"
-            >
+              color="text.secondary">
               {product.price}€
             </Typography>
           </CardContent>

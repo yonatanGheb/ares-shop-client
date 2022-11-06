@@ -85,8 +85,7 @@ export const CartProvider = ({ children }) => {
           addProductToCart,
           removeProductFromCart,
           clearCart
-        }}
-      >
+        }}>
         {children}
       </CartContext.Provider>
     </>
