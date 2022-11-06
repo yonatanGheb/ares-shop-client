@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server .",
-    "build": "Webpack .",
+    "build": "webpack --config webpack.config.js",
     "test": "test",
     "ci": "yarn install --frozen-lockfile",
     "lint": "eslint .",
