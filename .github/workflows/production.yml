@@ -19,7 +19,7 @@ jobs:
           node-version: 16
 
       - name: Install yarn packages
-        run: yarn ci
+        run: yarn
 
       - name: Prettier code format check
         run: yarn run format-check
