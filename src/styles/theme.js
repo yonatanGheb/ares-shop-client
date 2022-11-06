@@ -11,6 +11,7 @@ const theme = createTheme({
       light: '#ff',
       contrastText: '#ff'
     },
+
     secondary: {
       main: '#47FEFF',
       light: '#fff',
@@ -37,8 +38,8 @@ const theme = createTheme({
       main: red.A400
     },
     success: {
-      main: '#3BFF93',
-      light: '#3BFF93'
+      main: '#51B547',
+      light: '#51B547'
     },
     background: {
       default: '#ffffff',

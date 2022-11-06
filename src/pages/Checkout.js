@@ -19,9 +19,11 @@ import { makeStyles } from '@mui/styles';
 import { postOrder } from '../api';
 import useCart from '../context/Context';
 import SuccessModal from '../components/SuccessModal';
+import { Puff } from 'react-loader-spinner';
 
 const Checkout = () => {
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [urlToOrder, setUrlToOrder] = useState(false);
   const { products, removeProductFromCart, total, clearCart } = useCart();
   const classes = useStyles();
@@ -31,6 +33,7 @@ const Checkout = () => {
   };
 
   const postOrderToDatabase = async () => {
+    setLoading(true);
     const data = {
       createdAt: new Date().toLocaleString(),
       order: products
@@ -40,13 +43,40 @@ const Checkout = () => {
       setUrlToOrder(order.data);
       toggleModal(true);
       clearCart();
+      setLoading(false);
     } else {
+      setLoading(false);
       console.log('An error occurred while creating an order', order.error);
     }
   };
 
   const deleteProduct = (product) => {
     removeProductFromCart(product);
+  };
+
+  const CheckoutButton = () => {
+    if (loading) {
+      return (
+        <Button fullWidth disabled variant="contained">
+          <Puff
+            height="30"
+            width="30"
+            radisu={1}
+            color="#4fa94d"
+            ariaLabel="puff-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        </Button>
+      );
+    } else {
+      return (
+        <Button fullWidth onClick={postOrderToDatabase} variant="contained">
+          Chekout
+        </Button>
+      );
+    }
   };
   return (
     <Box className={classes.container}>
@@ -86,12 +116,12 @@ const Checkout = () => {
         <Grid sx={{}} item xs={12} sm={4}>
           <Paper
             sx={{
-              padding: '10px',
+              padding: '30px',
               display: 'flex',
               justifyContent: 'center',
               flexDirection: 'column'
             }}>
-            <Typography textAlign="left" fontWeight={400} variant="h5">
+            <Typography textAlign="left" fontWeight={600} variant="h6">
               Overview
             </Typography>
             <Divider />
@@ -101,12 +131,10 @@ const Checkout = () => {
                 Total
               </Typography>
               <Typography fontWeight={500} variant="h6">
-                {total}
+                {total}€
               </Typography>
             </Box>
-            <Button fullWidth onClick={postOrderToDatabase} variant="contained">
-              Chekout
-            </Button>
+            <CheckoutButton />
           </Paper>
         </Grid>
         <SuccessModal data={urlToOrder} open={openSuccessModal} toggleModal={toggleModal} />

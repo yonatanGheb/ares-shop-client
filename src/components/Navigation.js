@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { makeStyles } from '@mui/styles';
-import { Avatar, Badge, Button, Divider, Menu, MenuItem } from '@mui/material';
+import { Avatar, Badge, Button, Divider, List, Menu, MenuItem } from '@mui/material';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import { Link, useNavigate } from 'react-router-dom';
 import useCart from '../context/Context';
@@ -30,7 +30,7 @@ const Navigation = () => {
 
   return (
     <Box sx={{ flexGrow: 1, marginBottom: '50px' }}>
-      <AppBar sx={{ backgroundColor: '#1F3362' }} position="sticky">
+      <AppBar sx={{ backgroundColor: '#050D2F' }} position="sticky">
         <Toolbar>
           <Typography color="secondary" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link className={classes.linkStyles} to={'/'}>
@@ -39,20 +39,21 @@ const Navigation = () => {
           </Typography>
 
           <IconButton
+            sx={{}}
             onMouseOver={handleMouseOver}
             onClick={navigateToCheckout}
             size="large"
             aria-label="show 4 new mails"
             color="inherit">
             <Badge badgeContent={products?.length} color="error">
-              <ShoppingCartIcon color="red" height={40} />
+              <ShoppingCartIcon style={{ color: '#fff', height: '30px', width: '30px' }} />
             </Badge>
           </IconButton>
           <Menu
-            sx={{ maxWidth: 400, padding: 30 }}
+            sx={{ maxWidth: 400 }}
             PaperProps={{
               style: {
-                padding: '40px'
+                padding: '30px 20px'
               }
             }}
             className={classes.dropdown}
@@ -62,51 +63,36 @@ const Navigation = () => {
             onClose={handleClose}>
             {products.map((product, i) => {
               return (
-                <MenuItem key={i} divider classes={classes.menuItem} onClick={navigateToCheckout}>
+                <List
+                  key={i}
+                  divider
+                  className={classes.listItemContainer}
+                  onClick={navigateToCheckout}>
                   <ListItemAvatar>
                     <Avatar alt="Remy Sharp" src={product.image} />
                   </ListItemAvatar>
-                  <Typography sx={{}} variant="body1" noWrap>
+                  <Typography sx={{ width: '70%' }} variant="body1" noWrap>
                     {product.title}
                   </Typography>
-                  <Typography sx={{}} variant="body1">
+                  <Typography sx={{ width: '20%' }} variant="body1">
                     {product.price}€
                   </Typography>
-                </MenuItem>
+                </List>
               );
             })}
-            <Box mb={2} mt={2} sx={{}} display="flex" justifyContent="space-between">
-              <Typography fontWeight={500} variant="h6">
+            <Box mb={4} mt={3} display="flex" justifyContent="space-between">
+              <Typography fontWeight={800} variant="h5">
                 Total
               </Typography>
-              <Typography fontWeight={500} variant="h6">
+              <Typography fontWeight={800} variant="h5">
                 {total}
               </Typography>
             </Box>
             <Divider />
-            <Button fullWidth onClick={navigateToCheckout} variant="contained">
+            <Button size="large" fullWidth onClick={navigateToCheckout} variant="contained">
               Go to checkout
             </Button>
           </Menu>
-
-          {/*      <Menu
-            className={classes.dropdown}
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}>
-            {products.map((product, i) => {
-              return <ListItem key={i} product={product} />;
-            })}
-
-            <Divider />
-            <MenuItem>
-              <ListItemIcon>
-                <Cloud fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Web Clipboard</ListItemText>
-            </MenuItem>
-          </Menu> */}
         </Toolbar>
       </AppBar>
     </Box>
@@ -122,11 +108,21 @@ const useStyles = makeStyles({
     color: '#fff'
   },
   menuItem: {
+    '&:hover': {
+      backgroundColor: 'red !important',
+      color: 'blue'
+    },
     root: {
       '&:hover': {
         backgroundColor: 'red !important',
         color: 'blue'
       }
     }
+  },
+  listItemContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
 });

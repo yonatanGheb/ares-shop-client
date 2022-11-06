@@ -41,12 +41,12 @@ const ProductCard = ({ product }) => {
 
   const renderActionButton = () => {
     return !isInCart ? (
-      <ButtonBase onClick={handleCardAction} className={classes.addButton}>
-        <AddIcon color="#fff" />
+      <ButtonBase color="success" onClick={handleCardAction} className={classes.addButton}>
+        <AddIcon />
       </ButtonBase>
     ) : (
       <ButtonBase onClick={handleCardAction} className={classes.removeButtom}>
-        <RemoveIcon color="#fff" />
+        <RemoveIcon />
       </ButtonBase>
     );
   };
@@ -164,7 +164,7 @@ const useStyles = makeStyles({
     }
   },
   addButton: {
-    backgroundColor: '#48a779 !important',
+    backgroundColor: '#51B547 !important',
     borderRadius: '5px !important',
     color: '#fff',
     height: '30px',
@@ -172,7 +172,7 @@ const useStyles = makeStyles({
     zIndex: 900
   },
   removeButtom: {
-    backgroundColor: '#f44336 !important',
+    backgroundColor: '#C45054 !important',
     borderRadius: '5px !important',
     color: '#fff',
     height: '30px',

@@ -11,41 +11,6 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import ReactStars from 'react-rating-stars-component';
 import useCart from '../context/Context';
 
-const useStyles = makeStyles({
-  cardActionsContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '0px 10px 10px 10px ',
-    padding: 0
-  },
-  cardContainer: {
-    ':hover': {
-      boxShadow: 0,
-      border: '1px red solid'
-    }
-  },
-  focus: {
-    '&&&': {
-      background: 'transparent'
-    }
-  },
-  addButton: {
-    backgroundColor: '#48a779 !important',
-    borderRadius: '5px !important',
-    color: '#fff',
-    height: '30px',
-    width: '30px',
-    zIndex: 900
-  },
-  removeButtom: {
-    backgroundColor: '#f44336 !important',
-    borderRadius: '5px !important',
-    color: '#fff',
-    height: '30px',
-    width: '30px',
-    zIndex: 900
-  }
-});
 const ProductOverview = ({ product }) => {
   const [isInCart, setIsInCart] = useState(false);
   const { products, addProductToCart, removeProductFromCart } = useCart();
@@ -53,7 +18,6 @@ const ProductOverview = ({ product }) => {
   const classes = useStyles();
 
   useEffect(() => {
-    console.log('product', product);
     const productIsInCart = products.find((currentProduct) => currentProduct.id === product.id);
     if (productIsInCart) {
       setIsInCart(true);
@@ -152,6 +116,41 @@ const ProductOverview = ({ product }) => {
   );
 };
 
+const useStyles = makeStyles({
+  cardActionsContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: '0px 10px 10px 10px ',
+    padding: 0
+  },
+  cardContainer: {
+    ':hover': {
+      boxShadow: 0,
+      border: '1px red solid'
+    }
+  },
+  focus: {
+    '&&&': {
+      background: 'transparent'
+    }
+  },
+  addButton: {
+    backgroundColor: '#48a779 !important',
+    borderRadius: '5px !important',
+    color: '#fff',
+    height: '30px',
+    width: '30px',
+    zIndex: 900
+  },
+  removeButtom: {
+    backgroundColor: '#f44336 !important',
+    borderRadius: '5px !important',
+    color: '#fff',
+    height: '30px',
+    width: '30px',
+    zIndex: 900
+  }
+});
 ProductOverview.propTypes = {
   product: PropTypes.object
 };
