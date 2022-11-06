@@ -31,13 +31,11 @@ jobs:
 
       - name: Build app
         run: yarn run build
-     
+
       - name: Deploy to Firebae
-        uses: actions/checkout@v2
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ARES_SHOP_CLIENT }}'
           channelId: live
           projectId: ares-shop-client
-          
