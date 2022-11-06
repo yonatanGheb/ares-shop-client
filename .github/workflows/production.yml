@@ -20,6 +20,9 @@ jobs:
       - name: Install yarn packages
         run: yarn ci
 
+      - name: Install webpack
+        run: yarn global add webpack
+
       - name: Prettier code format check
         run: yarn run format
 
