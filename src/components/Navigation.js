@@ -34,7 +34,7 @@ const Navigation = () => {
         <Toolbar>
           <Typography color="secondary" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link className={classes.linkStyles} to={'/'}>
-              shop
+              ares-test-shop
             </Link>
           </Typography>
 

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server .",
-    "build": "Webpack .",
+    "build": "yarn webpack-cli",
     "test": "test",
     "ci": "yarn install --immutable --immutable-cache --check-cache",
     "heroku-prebuild": "yarn --dev",
