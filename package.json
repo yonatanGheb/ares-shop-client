@@ -11,6 +11,7 @@
     "build": "Webpack .",
     "test": "test",
     "ci": "yarn install --frozen-lockfile",
+    "heroku-prebuild": "npm install --dev",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
