@@ -82,7 +82,8 @@ const Checkout = () => {
               display: 'flex',
               justifyContent: 'center',
               flexDirection: 'column'
-            }}>
+            }}
+          >
             <Typography textAlign="left" fontWeight={400} variant="h5">
               Overview
             </Typography>

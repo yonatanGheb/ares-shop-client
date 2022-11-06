@@ -59,18 +59,21 @@ const ProductCard = ({ product }) => {
       }}
       item
       xs={6}
-      sm={4}>
+      sm={4}
+    >
       <Card
         sx={{
           ':hover': {
             boxShadow: 20
           }
         }}
-        className={classes.cardContainer1}>
+        className={classes.cardContainer1}
+      >
         <CardActionArea
           sx={{ margin: 0 }}
           classes={{ focusHighlight: classes.focus }}
-          onClick={navigateToProductOverview}>
+          onClick={navigateToProductOverview}
+        >
           <CardMedia
             component="img"
             height="240"
@@ -94,7 +97,8 @@ const ProductCard = ({ product }) => {
               }}
               gutterBottom
               variant="body1"
-              component="div">
+              component="div"
+            >
               {product.title}
             </Typography>
             <Typography
@@ -102,7 +106,8 @@ const ProductCard = ({ product }) => {
                 margin: 0
               }}
               variant="body1"
-              color="text.secondary">
+              color="text.secondary"
+            >
               {product.price}€
             </Typography>
           </CardContent>
