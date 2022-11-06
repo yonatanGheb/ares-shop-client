@@ -27,7 +27,7 @@ jobs:
         run: yarn run format
 
       - name: ESLint code check
-        run: yarn run lint
+        run: yarn run lint:fix
 
       - name: Deploy to Firebae
         uses: FirebaseExtended/action-hosting-deploy@v0
