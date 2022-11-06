@@ -45,7 +45,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   cache: false,
-  mode: 'production',
+  mode: 'development',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),

@@ -12,6 +12,6 @@ export const getOneProduct = async (id) => {
 
 export const postOrder = async (order) => {
   return await resolve(
-    axios.post(`https://ares-server.herokuapp.com/orders/order`, order).then((res) => res.data)
+    axios.post(`https://ares-server.herokuapp.com/order/`, order).then((res) => res.data)
   );
 };
