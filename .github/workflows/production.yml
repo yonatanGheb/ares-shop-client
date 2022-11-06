@@ -27,7 +27,7 @@ jobs:
         run: yarn run lint:fix
 
       - name: Build app
-        run: yarn run built
+        run: yarn run build
 
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
