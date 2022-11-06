@@ -6,7 +6,6 @@ React shopping application using the reducer and context hook.
 
 CI/CD pipeline -> Github Actions and deployment on Heroku.
 
-Live url:
 
-ex. https://ares-shop-client.web.app/
+Live url: https://ares-shop-client.web.app/
 
