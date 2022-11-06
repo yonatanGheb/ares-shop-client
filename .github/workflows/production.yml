@@ -16,13 +16,13 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 16.x
 
       - name: Install yarn packages
         run: yarn
 
       - name: Prettier code format check
-        run: yarn run format-check
+        run: yarn run format
 
       - name: ESLint code check
         run: yarn run lint
