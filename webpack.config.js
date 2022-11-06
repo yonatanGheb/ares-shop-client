@@ -8,11 +8,6 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'main.js'
   },
-  env: {
-    browser: true,
-    node: true,
-    es6: true
-  },
   devServer: {
     port: '3000',
     static: ['./public'],
