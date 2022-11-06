@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useReducer, useState, useEffect } from 'react';
+import PropTypes from 'prop-types'; // ES6
 import { getAllProducts } from '../api';
 import { cartReducer, initializer, initialState } from './reducer';
 
 export const CartContext = createContext();
-console.log(initializer(), 'initializerinitializer');
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState, initializer);
@@ -97,4 +97,7 @@ const useCart = () => {
   return context;
 };
 
+CartProvider.propTypes = {
+  children: PropTypes.element
+};
 export default useCart;

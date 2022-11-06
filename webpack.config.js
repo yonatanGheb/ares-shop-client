@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const path = require('path');
 
 module.exports = {
@@ -7,7 +8,11 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'main.js'
   },
-  target: 'web',
+  env: {
+    browser: true,
+    node: true,
+    es6: true
+  },
   devServer: {
     port: '3000',
     static: ['./public'],

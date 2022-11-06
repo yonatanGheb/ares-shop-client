@@ -20,7 +20,7 @@ import { postOrder } from '../api';
 import useCart from '../context/Context';
 
 const Checkout = () => {
-  const { products, addProductToCart, removeProductFromCart, total, clearCart } = useCart();
+  const { products, removeProductFromCart, total, clearCart } = useCart();
   const classes = useStyles();
   const postOrderToDatabase = async () => {
     // Post order to server
@@ -33,20 +33,6 @@ const Checkout = () => {
 
     console.log('order', order);
     clearCart();
-  };
-
-  function generate(element) {
-    return [0, 1, 2].map((value) =>
-      React.cloneElement(element, {
-        key: value
-      })
-    );
-  }
-  const [age, setAge] = React.useState(1);
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-    console.log('Changed', event.target);
   };
 
   const deleteProduct = (product) => {

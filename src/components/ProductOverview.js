@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types'; // ES6
-import { Link, useNavigate } from 'react-router-dom';
-import { Button, Grid, CardActionArea, CardActions, ButtonBase, useTheme } from '@mui/material';
+import { Grid, CardActionArea, CardActions, ButtonBase } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -50,7 +49,7 @@ const useStyles = makeStyles({
 const ProductOverview = ({ product }) => {
   const [isInCart, setIsInCart] = useState(false);
   const { products, addProductToCart, removeProductFromCart } = useCart();
-  let navigate = useNavigate();
+
   const classes = useStyles();
 
   useEffect(() => {

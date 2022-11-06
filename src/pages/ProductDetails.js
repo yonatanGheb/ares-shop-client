@@ -4,7 +4,6 @@ import { makeStyles } from '@mui/styles';
 import { useLocation, useParams } from 'react-router';
 import { getOneProduct } from '../api';
 import ProductOverview from '../components/ProductOverview';
-import useCart from '../context/Context';
 
 const useStyles = makeStyles({
   container: {
