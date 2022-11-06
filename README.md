@@ -1,4 +1,4 @@
-# Shopping site 
+# Shopping site client
 
 React shopping application using the reducer and context hook. 
 
