@@ -36,6 +36,9 @@ export const cartReducer = (state, action) => {
         ...state,
         total: payload.total
       };
+    case 'CLEAR_CART':
+      return { ...payload };
+
     default:
       throw new Error(`No case for action type of ${type} found in cart reducer.`);
   }

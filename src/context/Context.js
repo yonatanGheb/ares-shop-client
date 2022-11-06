@@ -11,13 +11,13 @@ export const CartProvider = ({ children }) => {
 
   // Set cart state to local storage for persistence
   useEffect(() => {
-    console.log('state', state);
     localStorage.setItem('localCart', JSON.stringify(state));
   }, [state]);
 
   // Reducer function ->  Add one product to cart
   const addProductToCart = (product) => {
-    const updatedCart = state.products.concat(product);
+    const updatedCart = state.products.concat({ ...product, qty: 1 });
+    console.log(updatedCart, 'updatedCart qty');
     updateTotalPrice(updatedCart);
     dispatch({
       type: 'ADD_ONE_ITEM_TO_CART',
@@ -53,6 +53,16 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // Reducer function ->  Clear cart.
+  const clearCart = () => {
+    dispatch({
+      type: 'CLEAR_CART',
+      payload: {
+        ...initialState
+      }
+    });
+  };
+
   // Get all products
   const getProducts = async () => {
     const allProducts = await getAllProducts();
@@ -73,7 +83,8 @@ export const CartProvider = ({ children }) => {
           products: state.products,
           productsList: allProducts,
           addProductToCart,
-          removeProductFromCart
+          removeProductFromCart,
+          clearCart
         }}>
         {children}
       </CartContext.Provider>

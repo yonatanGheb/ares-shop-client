@@ -28,7 +28,7 @@ const Navigation = () => {
               ares-webshop
             </Link>
           </Typography>
-          <Link className={classes.linkStyles} to={'/cart'}>
+          <Link className={classes.linkStyles} to={'/checkout'}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={products?.length} color="error">
                 <ShoppingCartIcon />
