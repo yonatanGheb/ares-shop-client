@@ -17,7 +17,6 @@ export const CartProvider = ({ children }) => {
   // Reducer function ->  Add one product to cart
   const addProductToCart = (product) => {
     const updatedCart = state.products.concat({ ...product, qty: 1 });
-    console.log(updatedCart, 'updatedCart qty');
     updateTotalPrice(updatedCart);
     dispatch({
       type: 'ADD_ONE_ITEM_TO_CART',

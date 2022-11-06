@@ -12,7 +12,6 @@ export const initializer = () => {
 // Cart reducer actions
 export const cartReducer = (state, action) => {
   const { type, payload } = action;
-  console.log('state in cart reduceeeer', state);
 
   switch (type) {
     case 'ADD_ONE_ITEM_TO_CART':
