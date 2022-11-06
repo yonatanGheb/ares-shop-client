@@ -10,7 +10,7 @@
     "start": "webpack-dev-server .",
     "build": "Webpack .",
     "test": "test",
-    "ci": "yarn install --frozen-lockfile",
+    "ci": "yarn install --immutable --immutable-cache --check-cache",
     "heroku-prebuild": "yarn --dev",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
