@@ -31,10 +31,13 @@ jobs:
 
       - name: Build app
         run: yarn run build
-
-      - name: Deploy to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
+     
+      - name: Deploy to Firebae
+        uses: actions/checkout@v2
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: 'ares-shop-client'
-          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ARES_SHOP_CLIENT }}'
+          channelId: live
+          projectId: ares-shop-client
+          
