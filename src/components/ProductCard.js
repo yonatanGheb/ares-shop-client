@@ -71,7 +71,16 @@ const ProductCard = ({ product }) => {
           sx={{ margin: 0 }}
           classes={{ focusHighlight: classes.focus }}
           onClick={navigateToProductOverview}>
-          <CardMedia component="img" height="240" image={product.image} sx={classes.cardImage} />
+          <CardMedia
+            component="img"
+            height="240"
+            image={product.image}
+            sx={{
+              objectFit: 'contain',
+              backgroundColor: '#fff',
+              backgroundPosition: 'center center'
+            }}
+          />
           <CardContent sx={{ margin: 0, padding: '20px 18px 10px 18px' }}>
             {' '}
             <Typography
