@@ -71,16 +71,7 @@ const ProductCard = ({ product }) => {
           sx={{ margin: 0 }}
           classes={{ focusHighlight: classes.focus }}
           onClick={navigateToProductOverview}>
-          <CardMedia
-            component="img"
-            height="240"
-            image={product.image}
-            sx={{
-              objectFit: 'contain',
-              backgroundColor: '#fff',
-              backgroundPosition: 'center center'
-            }}
-          />
+          <CardMedia component="img" height="240" image={product.image} sx={classes.cardImage} />
           <CardContent sx={{ margin: 0, padding: '20px 18px 10px 18px' }}>
             {' '}
             <Typography
@@ -178,5 +169,10 @@ const useStyles = makeStyles({
     height: '30px',
     width: '30px',
     zIndex: 900
+  },
+  cardImage: {
+    objectFit: 'contain',
+    backgroundColor: '#fff',
+    backgroundPosition: 'center center'
   }
 });

@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { makeStyles } from '@mui/styles';
-import { postOrder } from '../api';
+import { postOneOrder } from '../api';
 import useCart from '../context/Context';
 import SuccessModal from '../components/SuccessModal';
 import { Puff } from 'react-loader-spinner';
@@ -38,7 +38,7 @@ const Checkout = () => {
       createdAt: new Date().toLocaleString(),
       order: products
     };
-    const order = await postOrder(data);
+    const order = await postOneOrder(data);
     if (!order.error) {
       setUrlToOrder(order.data);
       toggleModal(true);

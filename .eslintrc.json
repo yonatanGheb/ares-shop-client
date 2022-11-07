@@ -19,5 +19,10 @@
       },
       { "usePrettierrc": true }
     ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

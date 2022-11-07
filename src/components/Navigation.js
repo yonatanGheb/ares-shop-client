@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -6,24 +6,26 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { makeStyles } from '@mui/styles';
-import { Avatar, Badge, Button, Divider, List, Menu, MenuItem } from '@mui/material';
+import { Avatar, Badge, Button, Divider, List, Menu } from '@mui/material';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import { Link, useNavigate } from 'react-router-dom';
 import useCart from '../context/Context';
 
 const Navigation = () => {
-  const [isMenuOpen, setisMenuOpen] = React.useState(false);
+  const [isMenuOpen, setisMenuOpen] = useState(false);
   const { products, total } = useCart();
   const navigate = useNavigate();
   const classes = useStyles();
+
   const handleMouseOver = (event) => {
     products.length > 0 && setisMenuOpen(event.currentTarget);
   };
 
   const navigateToCheckout = () => {
     navigate('/checkout');
-    setisMenuOpen(null);
+    setisMenuOpen(false);
   };
+
   const handleClose = () => {
     setisMenuOpen(false);
   };
@@ -39,7 +41,6 @@ const Navigation = () => {
           </Typography>
 
           <IconButton
-            sx={{}}
             onMouseOver={handleMouseOver}
             onClick={navigateToCheckout}
             size="large"
@@ -50,10 +51,10 @@ const Navigation = () => {
             </Badge>
           </IconButton>
           <Menu
-            sx={{ maxWidth: 400 }}
+            sx={{ width: 400 }}
             PaperProps={{
               style: {
-                padding: '30px 20px'
+                padding: '20px 35px'
               }
             }}
             className={classes.dropdown}
@@ -61,23 +62,33 @@ const Navigation = () => {
             keepMounted
             open={Boolean(isMenuOpen)}
             onClose={handleClose}>
+            <Box mb={4}>
+              <Typography mb={1} variant="h6">
+                You got {products.length} {products.length > 1 ? 'items' : 'item'} in your basket
+              </Typography>
+            </Box>
             {products.map((product, i) => {
               return (
-                <List
-                  key={i}
-                  divider
-                  className={classes.listItemContainer}
-                  onClick={navigateToCheckout}>
-                  <ListItemAvatar>
-                    <Avatar alt="Remy Sharp" src={product.image} />
-                  </ListItemAvatar>
-                  <Typography sx={{ width: '70%' }} variant="body1" noWrap>
-                    {product.title}
-                  </Typography>
-                  <Typography sx={{ width: '20%' }} variant="body1">
-                    {product.price}€
-                  </Typography>
-                </List>
+                <>
+                  {i == 0 && <Divider />}
+
+                  <List
+                    key={i}
+                    divider
+                    className={classes.listItemContainer}
+                    onClick={navigateToCheckout}>
+                    <ListItemAvatar>
+                      <Avatar alt="Remy Sharp" src={product.image} />
+                    </ListItemAvatar>
+                    <Typography sx={{ width: '70%' }} variant="body1" noWrap>
+                      {product.title}
+                    </Typography>
+                    <Typography sx={{ width: '20%' }} variant="body1">
+                      {product.price}€
+                    </Typography>
+                  </List>
+                  <Divider />
+                </>
               );
             })}
             <Box mb={4} mt={3} display="flex" justifyContent="space-between">
@@ -90,7 +101,7 @@ const Navigation = () => {
             </Box>
             <Divider />
             <Button size="large" fullWidth onClick={navigateToCheckout} variant="contained">
-              Go to checkout
+              Proceed to checkout
             </Button>
           </Menu>
         </Toolbar>
